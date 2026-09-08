@@ -2,8 +2,8 @@ export type Platform = "Zapier" | "Make.com" | "n8n" | "GoHighLevel";
 export type StepType = "trigger" | "action" | "filter" | "ai" | "router" | "code";
 
 export type WorkflowStep = { id: string; name: string; type: StepType; module: string };
-export type Workflow = { id: string; title: string; description: string; platform: Exclude<Platform, "GoHighLevel">; platformColor: string; image: string | null; features: string[]; workflowSteps: WorkflowStep[]; howItWorks: { overview: string; steps: string[]; benefits: string[] } };
-export type Funnel = { id: string; title: string; niche: string; description: string; image: string | null; features: string[]; sections: string[]; link: string; extraImages?: { src: string | null; caption: string }[] };
+export type Workflow = { id: string; title: string; description: string; platform: Exclude<Platform, "GoHighLevel">; platformColor: string; image: string | null; images?: Array<string | null>; features: string[]; workflowSteps: WorkflowStep[]; howItWorks: { overview: string; steps: string[]; benefits: string[] } };
+export type Funnel = { id: string; title: string; niche: string; description: string; image: string | null; features: string[]; sections: string[]; link: string; extraImages?: { url: string | null; caption: string }[] };
 
 export const workflows: Workflow[] = [
   {
