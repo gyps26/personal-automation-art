@@ -2508,7 +2508,7 @@ export const workflows: Workflow[] = [
     "description": "End-to-end n8n workflow that bulk-enriches Pipedrive contacts via Apollo.io IT-department search, deduplicates decision-makers, creates CRM persons and deals, triggers scheduled outreach drafts in Gmail, runs multi-touch nurture sequences, logs engagement back to Pipedrive, and produces daily Google Sheets reports with error alerting.",
     "platform": "n8n",
     "platformColor": "bg-[#ea580c]",
-    "image": "voyara-luggage-funnel.png",
+    "image": null,
     "features": [
       "Apollo IT Enrichment",
       "Pipedrive CRM Sync",
@@ -2673,7 +2673,7 @@ export const workflows: Workflow[] = [
     "description": "End-to-end Retrieval-Augmented Generation system in n8n: ingests Facebook Terms & Privacy PDF into Pinecone via Cohere embeddings, then serves a chat-driven AI Agent that retrieves grounded answers with OpenAI, window buffer memory, and vector search.",
     "platform": "n8n",
     "platformColor": "bg-[#ea580c]",
-    "image": "dental-care-funnel.png",
+    "image": null,
     "images": [
       null,
       null,
@@ -2786,7 +2786,7 @@ export const workflows: Workflow[] = [
     "description": "n8n workflow that ingests multiple PDF invoices through a form upload, splits and extracts text from each file, uses Claude Sonnet to structure invoice data against a JSON schema, validates business rules, then routes valid invoices to Google Sheets and invalid ones to an exception log with a detailed failure email.",
     "platform": "n8n",
     "platformColor": "bg-[#ea580c]",
-    "image": "safecare-dental-funnel.png",
+    "image": null,
     "features": [
       "PDF Batch Intake",
       "Claude Sonnet Extraction",
@@ -2886,7 +2886,7 @@ export const funnels: Funnel[] = [
     "title": "Voyara Luggage Bold",
     "niche": "Premium Travel & Lifestyle E-commerce",
     "description": "Luxury luggage product launch funnel built in GoHighLevel. Features an editorial hero with the Elite Set offer, problem-solution storytelling, detailed product compartment breakdowns, tiered pricing at $399, social proof testimonials, FAQ accordion, and a final scarcity CTA with discount incentive.",
-    "image": null,
+    "image": "voyara-luggage-funnel.png",
     "features": [
       "Editorial hero with 20% discount CTA and product showcase",
       "Problem-solution section addressing mismatched luggage pain points",
@@ -2919,7 +2919,7 @@ export const funnels: Funnel[] = [
     "title": "Dental Care",
     "niche": "Dental & Healthcare Services",
     "description": "Patient-friendly dental practice funnel built around transparent pricing and anxiety-free booking. Prominent $59 new-patient offer, online scheduling, insurance clarity, and social proof to reduce appointment hesitation.",
-    "image": null,
+    "image": "dental-care-funnel.png",
     "features": [
       "Transparent $59 new-patient offer above the fold",
       "Online appointment booking with calendar integration",
@@ -2943,7 +2943,7 @@ export const funnels: Funnel[] = [
     "title": "SafeCare Dental",
     "niche": "Dental & Healthcare Services",
     "description": "A patient-focused dental practice funnel featuring transparent new-patient pricing, educational content on restorative care, social proof from happy patients, and an easy online appointment booking system with insurance clarity.",
-    "image": null,
+    "image": "safecare-dental-funnel.png",
     "features": [
       "Bold hero with \"Get the Healthy, Confident Smile You Deserve\" messaging and new-patient offer",
       "Dental problem-awareness section with educational content",
