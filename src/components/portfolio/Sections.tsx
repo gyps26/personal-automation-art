@@ -62,7 +62,7 @@ function MissingImage({ label }: { label: string }) { return <div className="gri
 export function FunnelPortfolio() {
   const [image, setImage] = useState<{src:string; alt:string}|null>(null);
   const [detail, setDetail] = useState<(typeof funnels)[number]|null>(null);
-  return <section id="about" className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+  return <section id="funnels" className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
     <div className="mb-8"><span className="platform-pill platform-ghl">GoHighLevel</span><h2 className="mt-4 text-2xl font-semibold sm:text-3xl">GoHighLevel Funnel Portfolio</h2><p className="mt-3 max-w-4xl leading-7 text-muted-foreground">Conversion-focused funnels built in GoHighLevel with Pipeline Stages, Automation, Calendar Integration, Payment Integration, and Email &amp; SMS Marketing — from local service businesses to premium e-commerce launches.</p></div>
     <div className="grid gap-6 lg:grid-cols-3">{funnels.map(f=>{const src=resolveImage(f.image);return <article key={f.id} className="portfolio-card overflow-hidden">
       {src ? <button className="group relative block w-full" onClick={()=>setImage({src,alt:`${f.title} funnel screenshot`})}><img src={src} alt={`${f.title} funnel screenshot`} className="aspect-[16/10] w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"/><span className="absolute inset-x-0 bottom-0 bg-background/85 py-2 text-xs opacity-0 transition-opacity group-hover:opacity-100">View full screenshot</span></button> : <MissingImage label={f.title}/>} 
