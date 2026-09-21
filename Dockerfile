@@ -7,8 +7,9 @@ COPY package.json bun.lock* ./
 COPY bunfig.toml ./
 RUN bun install --frozen-lockfile
 
-# Copy source and build
+# Copy source and build (standalone Node server output for Docker)
 COPY . .
+ENV NITRO_PRESET=node-server
 RUN bun run build
 
 # ---------- Production stage ----------
