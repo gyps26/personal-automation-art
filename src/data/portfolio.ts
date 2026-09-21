@@ -2508,7 +2508,7 @@ export const workflows: Workflow[] = [
     "description": "End-to-end n8n workflow that bulk-enriches Pipedrive contacts via Apollo.io IT-department search, deduplicates decision-makers, creates CRM persons and deals, triggers scheduled outreach drafts in Gmail, runs multi-touch nurture sequences, logs engagement back to Pipedrive, and produces daily Google Sheets reports with error alerting.",
     "platform": "n8n",
     "platformColor": "bg-[#ea580c]",
-    "image": null,
+    "image": "voyara-luggage-funnel.png",
     "features": [
       "Apollo IT Enrichment",
       "Pipedrive CRM Sync",
@@ -2673,7 +2673,7 @@ export const workflows: Workflow[] = [
     "description": "End-to-end Retrieval-Augmented Generation system in n8n: ingests Facebook Terms & Privacy PDF into Pinecone via Cohere embeddings, then serves a chat-driven AI Agent that retrieves grounded answers with OpenAI, window buffer memory, and vector search.",
     "platform": "n8n",
     "platformColor": "bg-[#ea580c]",
-    "image": null,
+    "image": "dental-care-funnel.png",
     "images": [
       null,
       null,
@@ -2786,7 +2786,7 @@ export const workflows: Workflow[] = [
     "description": "n8n workflow that ingests multiple PDF invoices through a form upload, splits and extracts text from each file, uses Claude Sonnet to structure invoice data against a JSON schema, validates business rules, then routes valid invoices to Google Sheets and invalid ones to an exception log with a detailed failure email.",
     "platform": "n8n",
     "platformColor": "bg-[#ea580c]",
-    "image": null,
+    "image": "safecare-dental-funnel.png",
     "features": [
       "PDF Batch Intake",
       "Claude Sonnet Extraction",

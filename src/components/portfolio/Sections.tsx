@@ -18,9 +18,18 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { caseStudies, funnels, workflows, type CaseStudy, type Platform, type Workflow } from "@/data/portfolio";
+import gypsonProfile from "@/assets/portfolio/gypson-profile.jpg.asset.json";
+import voyaraFunnel from "@/assets/portfolio/voyara-luggage-funnel.png.asset.json";
+import dentalCareFunnel from "@/assets/portfolio/dental-care-funnel.png.asset.json";
+import safeCareFunnel from "@/assets/portfolio/safecare-dental-funnel.png.asset.json";
 
 const imageModules = import.meta.glob("/src/assets/portfolio/*.png", { eager: true, import: "default" }) as Record<string, string>;
-const imageByName = Object.fromEntries(Object.entries(imageModules).map(([path, value]) => [path.split("/").pop(), value]));
+const imageByName = {
+  ...Object.fromEntries(Object.entries(imageModules).map(([path, value]) => [path.split("/").pop(), value])),
+  "voyara-luggage-funnel.png": voyaraFunnel.url,
+  "dental-care-funnel.png": dentalCareFunnel.url,
+  "safecare-dental-funnel.png": safeCareFunnel.url,
+};
 const platformClass: Record<string, string> = { Zapier: "platform-zapier", "Make.com": "platform-make", n8n: "platform-n8n", GoHighLevel: "platform-ghl" };
 const typeLabel = { trigger: "Trigger", action: "Action", filter: "Filter", ai: "AI", router: "Router", code: "Code" } as const;
 
@@ -30,7 +39,7 @@ export function Nav() {
   return <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-xl">
     <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
       <a href="#top" className="flex items-center gap-3" aria-label="Gypson AutomationHub home">
-        <span className="grid size-9 place-items-center rounded-md border border-primary/60 bg-primary/10 text-xl font-bold text-primary" aria-hidden="true">G</span>
+        <img src={resolveImage("brand-logo-gypson.png")} alt="Gypson logo" className="size-9 rounded-md object-contain" />
         <span className="leading-tight"><strong className="block text-sm font-extrabold">GYPSON<span className="text-primary">.</span></strong><span className="block text-[11px] text-muted-foreground">AutomationHub</span></span>
         <span className="hidden rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary sm:inline">Me</span>
       </a>
@@ -148,7 +157,7 @@ const experience = [
 ];
 const certifications = ["Technical Virtual Assistant Certifications","AI Automation with n8n","Prompt Engineering","No Code Automation with Make.com","No Code Automation with Zapier","Funnel Building with GoHighLevel","VA Training PH Certification (16 hours)","Philippines Call Centre Institute, NCII (144 hours)"];
 
-export function About() { return <section id="about" className="border-t border-border py-16"><div className="mx-auto max-w-7xl px-4 sm:px-6"><div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]"><div><div className="mb-7 aspect-[4/5] max-w-sm overflow-hidden rounded-md border border-border bg-secondary/40"><div className="grid h-full place-items-center px-8 text-center text-sm text-muted-foreground">Gypson's portrait will appear here once the photo is available in this project.</div></div><span className="text-sm font-semibold text-primary">About me</span><h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Gypson Feguro</h2><p className="mt-2 font-medium text-foreground">Automation Specialist &amp; GoHighLevel Funnel Expert</p><p className="mt-5 leading-7 text-muted-foreground">2+ years in no-code/low-code platforms specializing in workflow automation, API integrations, and process optimization. Building efficient business automations that reduce manual tasks by 20-25%. Expert in designing high-converting GoHighLevel funnels that streamline lead capture, nurture sequences, and appointment booking to maximize client conversions.</p><div className="mt-7 space-y-2 text-sm"><a className="block text-primary hover:underline" href="tel:+639669718411">+639669718411</a><a className="block text-primary hover:underline" href="mailto:gypsonfeguro1@gmail.com">gypsonfeguro1@gmail.com</a><p className="text-muted-foreground">Tandag City, Surigao del Sur, Philippines</p></div></div><div><div className="mb-3 flex items-center justify-between"><h3 className="text-xl font-semibold">Technical Skills</h3><span className="platform-pill platform-n8n">LIVE</span></div><div className="flex flex-wrap gap-2">{skills.map(skill=><span className="feature-chip px-3 py-2 text-xs" key={skill}>{skill}</span>)}</div></div></div>
+export function About() { return <section id="about" className="border-t border-border py-16"><div className="mx-auto max-w-7xl px-4 sm:px-6"><div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]"><div><div className="mb-7 aspect-square max-w-sm overflow-hidden rounded-md border border-border bg-secondary/40"><img src={gypsonProfile.url} alt="Gypson Feguro" className="h-full w-full object-cover"/></div><span className="text-sm font-semibold text-primary">About me</span><h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Gypson Feguro</h2><p className="mt-2 font-medium text-foreground">Automation Specialist &amp; GoHighLevel Funnel Expert</p><p className="mt-5 leading-7 text-muted-foreground">2+ years in no-code/low-code platforms specializing in workflow automation, API integrations, and process optimization. Building efficient business automations that reduce manual tasks by 20-25%. Expert in designing high-converting GoHighLevel funnels that streamline lead capture, nurture sequences, and appointment booking to maximize client conversions.</p><div className="mt-7 space-y-2 text-sm"><a className="block text-primary hover:underline" href="tel:+639669718411">+639669718411</a><a className="block text-primary hover:underline" href="mailto:gypsonfeguro1@gmail.com">gypsonfeguro1@gmail.com</a><p className="text-muted-foreground">Tandag City, Surigao del Sur, Philippines</p></div></div><div><div className="mb-3 flex items-center justify-between"><h3 className="text-xl font-semibold">Technical Skills</h3><span className="platform-pill platform-n8n">LIVE</span></div><div className="flex flex-wrap gap-2">{skills.map(skill=><span className="feature-chip px-3 py-2 text-xs" key={skill}>{skill}</span>)}</div></div></div>
   <div className="mt-14 grid gap-10 lg:grid-cols-2"><div><h3 className="mb-5 text-xl font-semibold">Work Experience</h3><div className="space-y-6 border-l border-border pl-5">{experience.map(([role,date,company,copy])=><article key={role}><div className="flex flex-wrap items-start justify-between gap-2"><h4 className="font-semibold">{role}</h4><span className="text-xs text-primary">{date}</span></div><p className="mt-1 text-sm font-medium text-muted-foreground">{company}</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{copy}</p></article>)}</div></div><div><div className="mb-4 flex items-center justify-between"><h3 className="text-xl font-semibold">Certifications</h3><span className="platform-pill platform-zapier">VERIFIED</span></div><ul className="grid gap-2">{certifications.map(item=><li className="flex gap-2 text-sm text-muted-foreground" key={item}><CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary"/>{item}</li>)}</ul></div></div></div></section>; }
 
 const faqs = [
