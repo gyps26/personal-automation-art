@@ -1,0 +1,15 @@
+node_modules
+dist
+.output
+.vinxi
+.git
+.gitignore
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+.lovable
+roadmap.md
+README.md
+/tmp
