@@ -9,7 +9,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // Docker/self-hosting build: compile the Nitro server to a standalone Node
 // server (instead of the default Cloudflare Workers target) when
 // NITRO_PRESET=node-server is set (the Dockerfile/compose build sets it).
-const nitroPreset = process.env.NITRO_PRESET;
+const nitroPreset = process.env["NITRO_PRESET"];
 
 export default defineConfig({
   ...(nitroPreset
