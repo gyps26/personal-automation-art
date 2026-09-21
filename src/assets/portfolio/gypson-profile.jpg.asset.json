@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "d29049cd-ae37-477d-abc8-9ab4be8bb832",
-  "project_id": "638d7150-f13c-467e-85f2-36a36d3e80ee",
-  "url": "/__l5e/assets-v1/d29049cd-ae37-477d-abc8-9ab4be8bb832/gypson-profile.jpg",
-  "r2_key": "a/v1/638d7150-f13c-467e-85f2-36a36d3e80ee/d29049cd-ae37-477d-abc8-9ab4be8bb832/gypson-profile.jpg",
-  "original_filename": "gypson-profile.jpg",
-  "size": 136636,
   "content_type": "image/jpeg",
-  "created_at": "2026-09-21T07:56:21Z"
+  "created_at": "2026-09-21T07:56:21Z",
+  "original_filename": "gypson-profile.jpg",
+  "project_id": "eafbed56-49c1-48ff-972b-0b63a5bbf8f9",
+  "r2_key": "a/v1/eafbed56-49c1-48ff-972b-0b63a5bbf8f9/d29049cd-ae37-477d-abc8-9ab4be8bb832/gypson-profile.jpg",
+  "size": 136636,
+  "url": "/__l5e/assets-v1/d29049cd-ae37-477d-abc8-9ab4be8bb832/gypson-profile.jpg",
+  "version": 1
 }
