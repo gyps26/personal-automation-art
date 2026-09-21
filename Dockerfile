@@ -11,6 +11,7 @@ RUN bun install --frozen-lockfile
 COPY . .
 ENV NITRO_PRESET=node-server
 RUN bun run build
+RUN test -f /app/dist/server/index.mjs
 
 # ---------- Production stage ----------
 FROM oven/bun:1-slim AS production
