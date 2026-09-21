@@ -4,7 +4,6 @@ import {
   Bot,
   CalendarDays,
   CheckCircle2,
-  ChevronRight,
   Clock3,
   ExternalLink,
   ImageOff,
@@ -15,7 +14,6 @@ import {
   Sparkles,
   Target,
   Workflow as WorkflowIcon,
-  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -118,13 +116,54 @@ type CalFunction = ((...args: unknown[]) => void) & { q?: unknown[][]; loaded?: 
 export function Booking() {
   useEffect(()=>{
     const calWindow=window as Window & { Cal?: CalFunction };
-    if(!calWindow.Cal){const cal=((...args:unknown[])=>{cal.q?.push(args)}) as CalFunction;cal.q=[];cal.ns={};calWindow.Cal=cal;}
+    if(!calWindow.Cal){
+      const cal=((...args:unknown[])=>{
+        const [command,namespace]=args;
+        if(command==="init"&&typeof namespace==="string"){
+          cal.ns=cal.ns??{};
+          const api=((...namespaceArgs:unknown[])=>api.q?.push(namespaceArgs)) as CalFunction;
+          api.q=[];
+          cal.ns[namespace]=cal.ns[namespace]??api;
+          cal.ns[namespace].q?.push(args);
+        }
+        cal.q?.push(args);
+      }) as CalFunction;
+      cal.q=[];cal.ns={};calWindow.Cal=cal;
+    }
     const cal=calWindow.Cal;if(!cal)return;
     if(!cal.loaded){const script=document.createElement("script");script.src="https://app.cal.com/embed/embed.js";script.async=true;document.head.appendChild(script);cal.loaded=true;}
     cal("init","15min",{origin:"https://app.cal.com"});
-    cal("ui",{hideEventTypeDetails:false,layout:"month_view"});
-    cal("inline",{elementOrSelector:"#my-cal-inline-15min",config:{layout:"month_view",useSlotsViewOnSmallScreen:"true"},calLink:"gypson-feguro-ita9yx/15min"});
+    const namespace=cal.ns?.["15min"];
+    namespace?.("inline",{elementOrSelector:"#my-cal-inline-15min",config:{layout:"month_view",useSlotsViewOnSmallScreen:"true"},calLink:"gypson-feguro-ita9yx/15min"});
+    namespace?.("ui",{hideEventTypeDetails:false,layout:"month_view"});
   },[]);
   return <section id="booking" className="scroll-mt-20 border-t border-border bg-card/35 py-16"><div className="mx-auto max-w-7xl px-4 sm:px-6"><div className="mx-auto mb-8 max-w-2xl text-center"><span className="mb-3 inline-flex items-center gap-2 text-sm font-semibold text-primary"><CalendarDays className="size-4"/>Book a 15-minute call</span><h2 className="text-2xl font-semibold sm:text-3xl">Let's talk about your workflow</h2><p className="mt-3 text-muted-foreground">Choose a time that works for you and tell me what you want to automate.</p></div><div id="my-cal-inline-15min" className="mx-auto min-h-[720px] w-full max-w-5xl overflow-auto rounded-md border border-border bg-background" /></div></section>;
 }
+
+const skills = ["Zapier (Zaps, Paths, Code)","Make.com (Scenarios, Iterators)","n8n (Workflows, Nodes)","GoHighLevel (Funnels, Workflows)","Webhooks","APIs/JSON","Xero-Asana","Google Drive/Gmail","Filters & Delays","Looping","Prompt Engineering","Claude Code"];
+const experience = [
+  ["GoHighLevel Funnel Expert","June 2026 – Present","Freelance","Design and build high-converting GoHighLevel sales funnels with pipeline stages, automation workflows, calendar integration, payment gateways, and email/SMS nurture sequences."],
+  ["Automation Specialist","September 2023 – November 2025","Freelance","Developed Xero-Asana integrations, multi-step Zapier/Make workflows for lead capture, and optimized GoHighLevel funnels."],
+  ["Banking Specialist","November 2023 – December 2025","Genpact (Huntington Bank)","Managed high-volume inbound calls, resolving debit card activations, fraud disputes, password resets, and overdraft inquiries while ensuring compliance and customer satisfaction."],
+  ["Travel Advisor","August 2022 – December 2022","Teleperformance (CxLoyalty - JP Morgan Chase Bank)","Processed bookings and modifications, building skills in multi-step process handling."],
+  ["Customer Service Associate","March 2020 – July 2022","Accenture (Verizon for Business)","Managed high-volume phone, email, and chat interactions covering product inquiries, billing disputes, payments, refunds, and service escalations."],
+];
+const certifications = ["Technical Virtual Assistant Certifications","AI Automation with n8n","Prompt Engineering","No Code Automation with Make.com","No Code Automation with Zapier","Funnel Building with GoHighLevel","VA Training PH Certification (16 hours)","Philippines Call Centre Institute, NCII (144 hours)"];
+
+export function About() { return <section id="about" className="border-t border-border py-16"><div className="mx-auto max-w-7xl px-4 sm:px-6"><div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]"><div><span className="text-sm font-semibold text-primary">About me</span><h2 className="mt-3 text-3xl font-semibold sm:text-4xl">Mario Mercado Mallari Jr.</h2><p className="mt-2 font-medium text-foreground">Automation Specialist &amp; GoHighLevel Funnel Expert</p><p className="mt-5 leading-7 text-muted-foreground">2+ years in no-code/low-code platforms specializing in workflow automation, API integrations, and process optimization. Building efficient business automations that reduce manual tasks by 20-25%. Expert in designing high-converting GoHighLevel funnels that streamline lead capture, nurture sequences, and appointment booking to maximize client conversions.</p><div className="mt-7 space-y-2 text-sm"><a className="block text-primary hover:underline" href="tel:+639506634076">+639506634076</a><a className="block text-primary hover:underline" href="mailto:va.mario.mallari@gmail.com">va.mario.mallari@gmail.com</a><p className="text-muted-foreground">Bacoor City, Cavite, Philippines</p></div></div><div><div className="mb-3 flex items-center justify-between"><h3 className="text-xl font-semibold">Technical Skills</h3><span className="platform-pill platform-n8n">LIVE</span></div><div className="flex flex-wrap gap-2">{skills.map(skill=><span className="feature-chip px-3 py-2 text-xs" key={skill}>{skill}</span>)}</div></div></div>
+  <div className="mt-14 grid gap-10 lg:grid-cols-2"><div><h3 className="mb-5 text-xl font-semibold">Work Experience</h3><div className="space-y-6 border-l border-border pl-5">{experience.map(([role,date,company,copy])=><article key={role}><div className="flex flex-wrap items-start justify-between gap-2"><h4 className="font-semibold">{role}</h4><span className="text-xs text-primary">{date}</span></div><p className="mt-1 text-sm font-medium text-muted-foreground">{company}</p><p className="mt-2 text-sm leading-6 text-muted-foreground">{copy}</p></article>)}</div></div><div className="space-y-10"><div><h3 className="mb-4 text-xl font-semibold">Education</h3><div className="portfolio-card p-5"><h4 className="font-semibold">Bachelor of Science in Industrial Technology</h4><p className="mt-2 text-sm text-muted-foreground">Bacolod City College · 2012 – 2018</p></div></div><div><div className="mb-4 flex items-center justify-between"><h3 className="text-xl font-semibold">Certifications</h3><span className="platform-pill platform-zapier">VERIFIED</span></div><ul className="grid gap-2">{certifications.map(item=><li className="flex gap-2 text-sm text-muted-foreground" key={item}><CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary"/>{item}</li>)}</ul></div></div></div></div></section>; }
+
+const faqs = [
+  ["What automation platforms do you specialize in?","I specialize in Zapier, Make.com, n8n, and GoHighLevel, including multi-step workflows, conditional routing, API integrations, AI tools, funnels, and nurture automations."],
+  ["What does your GoHighLevel funnel service include?","My service includes funnel design and build, pipeline stages, automation workflows, calendar and payment integration, plus email and SMS marketing sequences."],
+  ["What is your engagement process?","I follow five clear stages: discovery call, strategy and planning, automation build, testing and optimization, then launch and support."],
+  ["How long does it typically take to complete an automation project?","Simple automations typically take 1–3 days, medium projects take 1–2 weeks, and complex systems may take 3–4 weeks or longer depending on requirements."],
+  ["What information do you need to start an automation project?","I need a description of the current manual process, the tools you use, the trigger and desired outcome, relevant edge cases, and secure access to required accounts or APIs."],
+  ["Do you provide ongoing support after the automation is built?","Yes. Projects include post-delivery support for bug fixes, and monthly support packages are available for monitoring, maintenance, and ongoing optimization."],
+  ["Can you integrate custom APIs or less common applications?","Absolutely. I can connect applications through REST APIs, webhooks, and custom code steps when a native integration is not available."],
+  ["What is your pricing structure?","Pricing is flexible and can be arranged per project, at an hourly rate, or as a monthly retainer depending on the scope and level of ongoing support."],
+  ["How do you ensure the security of my data and credentials?","I use secure credential-sharing practices, OAuth connections wherever possible, and the principle of least privilege so each system receives only the access it needs."],
+  ["Can you help optimize existing automations that are slow or failing?","Yes. I can audit existing workflows, identify bottlenecks, fix error-prone steps, reduce execution time, and improve reliability. Many clients see 40–60% improvement in efficiency after optimization."],
+];
+export function FAQ() { return <section id="faq" className="border-y border-border bg-card/35 py-16"><div className="mx-auto max-w-4xl px-4 sm:px-6"><div className="mb-8 text-center"><span className="text-sm font-semibold text-primary">Common questions</span><h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Frequently Asked Questions</h2></div><Accordion type="single" collapsible className="border-t border-border">{faqs.map(([question,answer],i)=><AccordionItem value={`faq-${i}`} key={question}><AccordionTrigger className="py-5 text-left text-base hover:no-underline">{question}</AccordionTrigger><AccordionContent className="pb-5 pr-8 text-sm leading-7 text-muted-foreground">{answer}</AccordionContent></AccordionItem>)}</Accordion></div></section>; }
 export function Footer() { return <footer className="border-t border-border"><div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6"><span>© {new Date().getFullYear()} Mario Mallari. All rights reserved.</span><a href="https://automation-watch.onrender.com/portfolio" target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-foreground">AutomationHub <ExternalLink className="size-3.5"/></a></div></footer>; }
